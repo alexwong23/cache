@@ -1,0 +1,35 @@
+<h1>Finished Matches</h1>
+
+<div class="container-fluid">
+  <% finishedMatches.forEach(function(match) { %>
+    <% var homeLogo = teamObj.crests[match.homeTeam] %>
+    <% var awayLogo = teamObj.crests[match.awayTeam] %>
+    <div class="row" id=<%= match.matchNo%>>
+      <div class="col-sm-4">
+        <div class="card card-block text-xs-left">
+          <img class="card-img-top logo" src=<%= homeLogo %> alt="Team Logo">
+          <h4 class="card-title"><%= match.homeTeam %></h4>
+          <p class="card-text"><%= teamObj.shortName[match.homeTeam] %></p>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="card card-block text-xs-center">
+        <div class="card-header">
+          <h4 class="card-title"><%= "Matchday " + match.matchday %></h4>
+        </div>
+          <h2 class="card-title"><%= match.result.goalsHomeTeam + "  :  " + match.result.goalsAwayTeam%></h2>
+        <div class="card-footer text-muted">
+          <h4 class="card-title"><%= match.date %></h4>
+        </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="card card-block text-xs-right">
+          <img class="card-img-top logo" src=<%= awayLogo %> alt="Team Logo">
+          <h4 class="card-title"><%= match.awayTeam %></h4>
+          <p class="card-text"><%= teamObj.shortName[match.awayTeam] %></p>
+        </div>
+      </div>
+    </div>
+  <% }) %>
+</div>
