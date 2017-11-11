@@ -20,4 +20,10 @@ router.route('/create')
       .get(userCheck, testController.getCreate)
       .post(testController.postCreate)
 
+router.route('/edit/:id')
+      .get(userCheck, testController.getEditDetails)
+      .put(testController.putEditDetails)
+
+router.get('/:id', userCheck, testController.getDetails)
+
 module.exports = router

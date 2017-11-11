@@ -28,5 +28,42 @@ module.exports = {
         })
       }
     })
+  },
+  getEditDetails: function (req, res, next) {
+    var testid = req.url.replace('/edit/', '')
+    Test.findOne({'_id': testid}).exec(function (err, testDetails) {
+      if (err) { return next(err) }
+      res.render('test/edit', {
+        message: req.flash('editDetailsMessage'),
+        testDetails: testDetails
+      })
+    })
+  },
+  putEditDetails: function (req, res, next) {
+    var testid = req.url.replace('/edit/', '')
+    Test.findOne({'title': req.body.test.title}).exec(function (err, duplicateFound) {
+      if (err) { return next(err) }
+      if (duplicateFound) {
+        req.flash('editDetailsMessage', 'This title has been taken.')
+        res.redirect('/tests' + req.url)
+      } else {
+        Test.findOneAndUpdate({'_id': testid}, {
+          title: req.body.test.title,
+          subject: req.body.test.subject,
+          description: req.body.test.description,
+          number_of_questions: req.body.test.number_of_questions
+        }).exec(function (err, updateTestDetails) {
+          if (err) { return next(err) }
+          res.redirect('/tests/' + testid)
+        })
+      }
+    })
+  },
+  getDetails: function (req, res, next) {
+    var testid = req.url.replace('/', '')
+    Test.findOne({'_id': testid}).exec(function (err, testDetails) {
+      if (err) { return next(err) }
+      res.render('test/details', { testDetails: testDetails })
+    })
   }
 }
