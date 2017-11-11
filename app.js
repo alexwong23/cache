@@ -46,6 +46,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 // set routes to variables
 var indexRoutes = require('./routes/index')
+var testRoutes = require('./routes/test')
 
 // body parser to get req.body from web page
 app.use(bodyParser.json())
@@ -80,6 +81,27 @@ app.use(function (req, res, next) {
 
 // connect routes to url
 app.use('/', indexRoutes)
+app.use('/tests', testRoutes)
+
+// Handle 404
+app.use(function (req, res) {
+  res.status(404)
+  res.render('error', {
+    title: '404',
+    error: 'Page not found :(',
+    message: 'Unfortunately, this page does not exist.'
+  })
+})
+
+// Handle 500
+app.use(function (err, req, res, next) {
+  res.status(500)
+  res.render('error', {
+    title: 500,
+    error: err,
+    message: 'An error occurred and your request could not be completed. Please try again or'
+  })
+})
 
 // server listen if either on heroku or localhost
 server.listen(process.env.PORT || 4000)

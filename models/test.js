@@ -8,10 +8,11 @@ var testSchema = new mongoose.Schema({
   },
   subject: {
     type: String,
-    required: [true, 'Please select a subject']
+    required: [true, 'Please enter a subject']
   },
   description: String,
-  number_of_questions: Number
+  number_of_questions: Number,
+  complete: Boolean
 })
 
 var Test = mongoose.model('Test', testSchema)

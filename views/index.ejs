@@ -1,7 +1,18 @@
-<h1>HOMEPAGE</h1>
+<h1>HOME PAGE</h1>
 
 <% if(message.length > 0) { %>
   <div class="alert alert-danger">
     <%= message %>
   </div>
 <% } %>
+
+<a href="tests/create">Create Test</a>
+
+<%# div to display all tests%>
+<div class="container-fluid">
+  <% testsArr.forEach(function(test) { %>
+    <a href=<%= "/tests/" + test.id %>><h2>Title: <%= test.title %></h2></a>
+    <h3>Subject: <%= test.subject %>, No of Qns: <%= test.number_of_questions %></h3>
+    <h4>Description: <%= test.description %></h4>
+  <% }) %>
+</div>
