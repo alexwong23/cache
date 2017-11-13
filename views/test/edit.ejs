@@ -6,23 +6,24 @@
   </div>
 <% } %>
 
-<form method="post" action="/tests/edit/<%= testDetails._id %>">
-  <div class="form-group">
-    <input type="hidden" name="_method" value="PUT">
-    <label for="title">Title</label>
-    <input type="text" class="form-control" id="title" name="test[title]" value="<%= testDetails.title %>" required>
-  </div>
-  <div class="form-group">
-    <label for="subject">Subject</label>
-    <input type="text" class="form-control" id="subject" name="test[subject]" value="<%= testDetails.subject %>" required>
-  </div>
-  <div class="form-group">
-    <label for="description">Description</label>
-    <textarea class="form-control" rows="4" id="description" name="test[description]" value="<%= testDetails.description %>" maxlength="100"></textarea>
-  </div>
-  <div class="form-group">
-    <label for="number_of_questions">No of Qns</label>
-    <input type="number" class="form-control" id="number_of_questions" name="test[number_of_questions]" value="<%= testDetails.number_of_questions %>" required>
-  </div>
-  <button type="submit">Edit</button>
-</form>
+<div class="container-fluid">
+  <% var testDetailsJS = JSON.stringify(testDetails).replace(/\s/g, "") %>
+  <form method="post" action="/tests/edit/<%= testDetails._id %>" enctype="application/x-www-form-urlencoded"
+  class="edittest"
+  data-test=<%= testDetailsJS%>>
+    <div class="form-group">
+      <input type="hidden" name="_method" value="PUT">
+      <label for="title">Title</label>
+      <input type="text" class="form-control" id="title" name="test[title]" value="<%= testDetails.title %>" required>
+    </div>
+    <div class="form-group">
+      <label for="subject">Subject</label>
+      <input type="text" class="form-control" id="subject" name="test[subject]" value="<%= testDetails.subject %>" required>
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea class="form-control" rows="4" id="description" name="test[description]" maxlength="100"></textarea>
+    </div>
+    <button type="submit">Edit</button>
+  </form>
+</div>

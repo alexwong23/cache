@@ -14,10 +14,10 @@ var questionSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Please select the correct answer to the question']
   },
-  option_1: String,
-  option_2: String,
-  option_3: String,
-  option_4: String
+  option1: String,
+  option2: String,
+  option3: String,
+  option4: String
 })
 
 var Question = mongoose.model('Question', questionSchema)

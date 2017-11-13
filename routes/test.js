@@ -21,8 +21,13 @@ router.route('/create')
       .post(testController.postCreate)
 
 router.route('/edit/:id')
-      .get(userCheck, testController.getEditDetails)
-      .put(testController.putEditDetails)
+      .get(userCheck, testController.getEditTestDetails)
+      .put(testController.putEditTestDetails)
+
+// add question
+router.route('/question/:id')
+      .get(userCheck, testController.getQuestion)
+      .post(testController.postQuestion)
 
 router.get('/:id', userCheck, testController.getDetails)
 
