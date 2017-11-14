@@ -5,7 +5,7 @@
 <% } %>
 
 <div class="container-fluid">
-  <h1>Title: <%= testDetails.title %></h1><a href="/tests/edit/<%= testDetails._id %>"> Edit Test</a>
+  <h1>Title: <%= testDetails.title %></h1><a href="/tests/edit/test/<%= testDetails._id %>"> Edit Test</a>
   <h3>Subject: <%= testDetails.subject %></h3>
   <h4>Description: <%= testDetails.description %></h4>
   <h4>No of Qns: <%= testDetails.number_of_questions %></h4>
@@ -16,9 +16,10 @@
     <% testQuestions.forEach(function(question) { %>
       <h3><%=question.content%></h3>
       <h4><%=question.format%></h4>
+      <a href="/tests/edit/question/<%=question._id%>">Edit</a>
     <% }) %>
   <% } else { %>
     <h3>No Questions found for test</h3>
   <% } %>
-  <a href="/tests/question/<%=testDetails._id%>">Add question</a>
+  <a href="/tests/create/question/<%=testDetails._id%>">Add question</a>
 </div>

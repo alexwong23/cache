@@ -7,9 +7,9 @@
 <% } %>
 
 <div class="container-fluid">
-  <% var testDetailsJS = JSON.stringify(testDetails).replace(/\s/g, "") %>
-  <form method="post" action="/tests/edit/<%= testDetails._id %>" enctype="application/x-www-form-urlencoded"
-  class="edittest"
+  <% var testDetailsJS = JSON.stringify(testDetails).replace(/\s/g, "_space_") %>
+  <form method="post" action="/tests/edit/test/<%= testDetails._id %>" enctype="application/x-www-form-urlencoded"
+  class="editTest"
   data-test=<%= testDetailsJS%>>
     <div class="form-group">
       <input type="hidden" name="_method" value="PUT">

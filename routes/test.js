@@ -16,19 +16,29 @@ function userCheck (req, res, next) {
 }
 
 // functions in testController
-router.route('/create')
-      .get(userCheck, testController.getCreate)
-      .post(testController.postCreate)
 
-router.route('/edit/:id')
+// Create & Post Test
+router.route('/create/test')
+      .get(userCheck, testController.getCreateTest)
+      .post(testController.postCreateTest)
+
+// Edit Test Details
+router.route('/edit/test/:id')
       .get(userCheck, testController.getEditTestDetails)
       .put(testController.putEditTestDetails)
 
-// add question
-router.route('/question/:id')
-      .get(userCheck, testController.getQuestion)
-      .post(testController.postQuestion)
+// Edit Question Details
+router.route('/edit/question/:questionid')
+      .get(userCheck, testController.getEditQuestionDetails)
+      .put(testController.putEditQuestionDetails)
 
-router.get('/:id', userCheck, testController.getDetails)
+// View Test & Questions with links to edit & add questions
+router.route('/edit/:id')
+      .get(userCheck, testController.getEditTestLinks)
+
+// Create & Post Question
+router.route('/create/question/:id')
+      .get(userCheck, testController.getCreateQuestion)
+      .post(testController.postCreateQuestion)
 
 module.exports = router
