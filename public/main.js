@@ -78,4 +78,13 @@ $(document).ready(function () {
       }
     })
   }
+
+  // Used when Create Attempt
+  if ($('.submitAttempt').length) {
+    // submit form
+    $('.submitAttempt').submit(function (e) {
+      // e.preventDefault()
+      // console.log(JSON.stringify($('.submitAttempt').serializeArray()))
+    })
+  }
 })

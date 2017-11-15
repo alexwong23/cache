@@ -11,7 +11,7 @@
 <%# div to display all tests%>
 <div class="container-fluid">
   <% testsArr.forEach(function(test) { %>
-    <a href=<%= "/tests/edit/" + test.id %>><h2>Title: <%= test.title %></h2></a>
+    <a href=<%= "/tests/view/" + test.id %>><h2>Title: <%= test.title %></h2></a>
     <h3>Subject: <%= test.subject %></h3>
     <h4>Description: <%= test.description %></h4>
   <% }) %>

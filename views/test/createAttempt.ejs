@@ -1,0 +1,41 @@
+<% if(message.length > 0) { %>
+  <div class="alert alert-danger">
+    <%= message %>
+  </div>
+<% } %>
+
+<div class="container-fluid">
+  <h2>Title: <%= testDetails.title %></h2>
+  <h4>Subject: <%= testDetails.subject %></h4>
+</div>
+
+<div class="container-fluid hithere">
+  <% if (testQuestions.length > 0) { %>
+    <form method="post" action="/tests/create/attempt/<%=testDetails._id%>" class="submitAttempt">
+      <% var questionNo = 0 %>
+      <% testQuestions.forEach(function(question) { %>
+        <% questionNo += 1%>
+        <input type="hidden" name="question[no<%=questionNo%>][id]" value="<%=question._id%>">
+        <h4><%=question.content%></h4>
+        <% if (question.format === 'mcq-single-option') { %>
+          <div class="form-group">
+            <input type="radio" name="question[no<%=questionNo%>][answer]" value="<%=question.option1%>"> <%= question.option1 %><br>
+            <input type="radio" name="question[no<%=questionNo%>][answer]" value="<%=question.option2%>"> <%= question.option2 %><br>
+            <input type="radio" name="question[no<%=questionNo%>][answer]" value="<%=question.option3%>"> <%= question.option3 %><br>
+            <input type="radio" name="question[no<%=questionNo%>][answer]" value="<%=question.option4%>"> <%= question.option4 %>
+          </div>
+        <% } else if (question.format === 'true-false') { %>
+          <div class="form-group">
+            <input type="radio" name="question[no<%=questionNo%>][answer]" value="true"> True<br>
+            <input type="radio" name="question[no<%=questionNo%>][answer]" value="false"> False
+          </div>
+        <% } else if (question.format === 'open-ended') { %>
+          <div class="form-group">
+            <textarea class="form-control" rows="3" name="question[no<%=questionNo%>][answer]" maxlength="200"></textarea>
+          </div>
+        <% } %>
+      <% }) %>
+      <button type="submit">Submit</button>
+    </form>
+  <% } %>
+</div>

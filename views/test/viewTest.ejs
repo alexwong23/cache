@@ -5,23 +5,19 @@
 <% } %>
 
 <div class="container-fluid">
-  <h1>Edit Test</h1>
   <h2>Title: <%= testDetails.title %></h2>
   <h4>Subject: <%= testDetails.subject %></h4>
   <h4>Description: <%= testDetails.description %></h4>
   <h4>No of Qns: <%= testDetails.number_of_questions %></h4>
-  <a href="/tests/edit/test/<%= testDetails._id %>">Edit Test Details</a>
-  <a href="/tests/view/<%= testDetails._id %>">View & Attempt Test</a>
+  <a href="/tests/edit/<%= testDetails._id %>">Edit Test</a>
+  <a href="/tests/create/attempt/<%= testDetails._id %>">Attempt Test</a>
 </div>
 
 <div class="container-fluid">
-  <a href="/tests/create/question/<%=testDetails._id%>">Add question</a>
   <% if (testQuestions.length > 0) { %>
     <% testQuestions.forEach(function(question) { %>
       <h4><%=question.content%></h4>
       <h5><%=question.format%></h5>
-      <a href="/tests/edit/question/<%=question._id%>">Edit</a>
     <% }) %>
   <% } %>
-
 </div>
